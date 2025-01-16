@@ -6,18 +6,26 @@ Prerequisites:
 - [NVIDIA Driver](https://ubuntu.com/server/docs/nvidia-drivers-installation)
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+- [Enable MIG Mode](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#enable-mig-mode)
 
-Run:
+Take A100 as an example, run:
 
 ```sh
 docker run --rm -it --gpus all \
     --cap-add=SYS_ADMIN \
     -e NVIDIA_MIG_CONFIG_DEVICES=all \
     ubuntu
+
 # in the container
+# Create two `3g.20gb` GPU instances (GI) and corresponding compute instances (CI)
 nvidia-smi mig -cgi 9,3g.20gb -C
-nvidia-smi mig -dci && nvidia-smi mig -dgi
+# List the available CIs and GIs
+nvidia-smi mig -lgi; nvidia-smi mig -lci;
+# Destroy all the CIs and GIs
+nvidia-smi mig -dci; nvidia-smi mig -dgi;
 ```
+
+This should also work on A30/H100/H200 by substituting the MIG profile to [a supported one](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#supported-mig-profiles).
 
 Note: `--runtime=nvidia`, `-e NVIDIA_VISIBLE_DEVICES=all`, and `-e NVIDIA_DRIVER_CAPABILITIES=all` may be required depending on your environment and use cases.
 
