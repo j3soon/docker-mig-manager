@@ -3,6 +3,7 @@
 Unofficial minimal docker instructions for managing NVIDIA Multi-Instance GPU (MIG) in containers.
 
 Prerequisites:
+
 - [NVIDIA Driver](https://ubuntu.com/server/docs/nvidia-drivers-installation)
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
@@ -43,4 +44,4 @@ Some references I found useful during the investigation.
 
 ## Acknowledgement
 
-Thanks **Hsu-Tzu Ting** for discussions.
+Thanks [@Irene-Ting](https://github.com/Irene-Ting) for discussions.
